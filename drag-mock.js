@@ -148,7 +148,7 @@ DragDropAction.prototype._queueExecuteNext = function() {
 };
 
 
-DragDropAction.prototype.dragStart = function(targetElement, eventProperties, configCallback) {
+DragDropAction.prototype.dragstart = function(targetElement, eventProperties, configCallback) {
   var params = parseParams(targetElement, eventProperties, configCallback)
     , events = ['mousedown', 'dragstart', 'drag']
     , dataTransfer = new DataTransfer();
