@@ -24,7 +24,7 @@ function removeFromArray(array, item) {
 var DataTransfer = function() {
   this.dataByFormat = {};
 
-  this.dropEffect = 'none';
+  this.dropEffect = 'move';
   this.effectAllowed = 'all';
   this.files = [];
   this.types = [];
