@@ -118,7 +118,7 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
 
   // start dragging process
   console.log('DRAGSTART');
-  fireMouseEvent('mousedown', elemDrag);
+  fireMouseEvent('pointerdown', elemDrag);
   dragStartEvent = fireMouseEvent('dragstart', elemDrag);
 
   // after a delay, do the first dragover; this will run up to MAX_TRIES times
