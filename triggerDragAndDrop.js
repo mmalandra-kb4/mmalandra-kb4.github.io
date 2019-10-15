@@ -22,7 +22,7 @@ var triggerDragAndDropOld = function (elemDrag, elemDrop) {
   fireMouseEvent('mouseenter', elemDrag, center1X, center1Y);
   fireMouseEvent('mouseover', elemDrag, center1X, center1Y);
   fireMouseEvent('mousedown', elemDrag, center1X, center1Y);
-  fireMouseEvent('pointerdown', elemDrag, center1x, center1Y);
+  fireMouseEvent('pointerdown', elemDrag, center1X, center1Y);
 
   // start dragging process over to drop target
   fireMouseEvent('dragstart', elemDrag, center1X, center1Y);
