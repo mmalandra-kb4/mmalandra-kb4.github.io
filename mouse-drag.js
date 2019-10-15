@@ -96,13 +96,13 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
     console.log('DROP');
     // release dragged element on top of drop target
     fireMouseEvent('drop', elemDrop, dragStartEvent.dataTransfer);
-    fireMouseEvent('mouseup', elemDrop);    // not strictly necessary but I like the symmetry
+    fireMouseEvent('pointerup', elemDrop);    // not strictly necessary but I like the symmetry
     if (callback) callback(true);
   }
 
   // start dragging process
   console.log('DRAGSTART');
-  fireMouseEvent('mousedown', elemDrag);
+  fireMouseEvent('pointerdown', elemDrag);
   dragStartEvent = fireMouseEvent('dragstart', elemDrag);
 
   // after a delay, do the first dragover; this will run up to MAX_TRIES times
