@@ -1,21 +1,3 @@
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var id = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(id));
-}
-
-function autodrag() {
-    return triggerDragAndDrop('#drag1', '#div1');
-}
-
 // Originally from https://ghostinspector.com/blog/simulate-drag-and-drop-javascript-casperjs/
 // trimmed down and modified by @kemokid (Martin Baker) to work with Sortable.js
 ///
@@ -24,13 +6,19 @@ function autodrag() {
 // This has been made more general, to work with other drag-and-drop elements besides a
 // Sortable list, but is not as complete as the Casper example above.
 
+// Call with DOM selectors, eg `triggerDragAndDrop('#drag', '#drop');`
+
 // Returns false if unable to start.
 // callback, if present, will be called with true if able to finish, false if not.
 // If you receive "false" on the callback, the list is likely not in the beginning state.
-var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
-  var DELAY_INTERVAL_MS = 10;
+var triggerDragAndDrop = function (selectorDrag, selectorDrop, callback) {
+  var DELAY_INTERVAL_MS = 500;
   var MAX_TRIES = 10;
   var dragStartEvent;
+
+  // fetch target elements
+  var elemDrag = document.querySelector(selectorDrag);
+  var elemDrop = document.querySelector(selectorDrop);
 
   if (!elemDrag || !elemDrop) {
     console.log("can't get elements");
@@ -118,7 +106,7 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
 
   // start dragging process
   console.log('DRAGSTART');
-  fireMouseEvent('pointerdown', elemDrag);
+  fireMouseEvent('mousedown', elemDrag);
   dragStartEvent = fireMouseEvent('dragstart', elemDrag);
 
   // after a delay, do the first dragover; this will run up to MAX_TRIES times
