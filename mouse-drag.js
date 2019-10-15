@@ -82,7 +82,7 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   // start dragging process
   console.log('STARTING DRAG');
   fireMouseEvent('pointerdown', elemDrag);
-  setTimeout(dragStart, 1000);
+  setTimeout(dragStart, DELAY_INTERVAL_MS / 2);
   setTimeout(dragOver, DELAY_INTERVAL_MS);
   setTimeout(drop, DELAY_INTERVAL_MS * 2);
   return true;
