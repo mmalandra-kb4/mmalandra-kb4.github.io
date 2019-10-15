@@ -21,12 +21,6 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
     return false;
   }
 
-  var startingDropRect = elemDrop.getBoundingClientRect();
-
-  function rectsEqual(r1, r2) {
-    return r1.top === r2.top && r1.right === r2.right && r1.bottom === r2.bottom && r1.left === r2.left;
-  }
-
   // function for triggering mouse events
   function fireMouseEvent(type, elem, dataTransfer) {
     var evt = document.createEvent('MouseEvents');
@@ -67,29 +61,9 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   // trigger dragging process on top of drop target
   // We sometimes need to do this multiple times due to the vagaries of
   // how Sortable manages the list re-arrangement
-  var counter = 0;
   function dragover() {
-    counter++;
-    console.log('DRAGOVER #' + counter);
-
-    var currentDropRect = elemDrop.getBoundingClientRect();
-    if (rectsEqual(startingDropRect, currentDropRect) && counter < MAX_TRIES) {
-      if (counter != 1) console.log("drop target rect hasn't changed, trying again");
-
-      // mouseover / mouseout etc events not necessary
-      // dragenter / dragleave events not necessary either
-      fireMouseEvent('dragover', elemDrop, dragStartEvent.dataTransfer);
-
-      setTimeout(dragover, DELAY_INTERVAL_MS);
-    } else {
-      if (rectsEqual(startingDropRect, currentDropRect)) {
-        console.log("wasn't able to budge drop target after " + MAX_TRIES + " tries, aborting");
-        fireMouseEvent('drop', elemDrop, dragStartEvent.dataTransfer);
-        if (callback) callback(false);
-      } else {
-        setTimeout(drop, DELAY_INTERVAL_MS);
-      }
-    }
+    console.log('DRAGOVER');
+    fireMouseEvent('dragover', elemDrop, dragStartEvent.dataTransfer);
   }
 
   function drop() {
@@ -99,14 +73,17 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
     fireMouseEvent('pointerup', elemDrop);    // not strictly necessary but I like the symmetry
     if (callback) callback(true);
   }
+  
+  function dragStart() {
+    console.log('DRAGSTART');
+    fireMouseEvent('dragstart', elemDrag);
+  }
 
   // start dragging process
   console.log('DRAGSTART');
   fireMouseEvent('pointerdown', elemDrag);
-  dragStartEvent = fireMouseEvent('dragstart', elemDrag);
-
-  // after a delay, do the first dragover; this will run up to MAX_TRIES times
-  // (with a delay between each run) and finally run drop() with a delay:
+  setTimeout(dragStart, DELAY_INTERVAL_MS);
   setTimeout(dragover, DELAY_INTERVAL_MS);
+  setTimeout(drop, DELAY_INTERVAL_MS);
   return true;
 };
