@@ -84,6 +84,8 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   fireMouseEvent('pointerdown', elemDrag);
   dragStart();
   dragOver();
+  dragOver();
+  dragOver();
   drop();
   return true;
 };
