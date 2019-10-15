@@ -61,7 +61,7 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   // trigger dragging process on top of drop target
   // We sometimes need to do this multiple times due to the vagaries of
   // how Sortable manages the list re-arrangement
-  function dragover() {
+  function dragOver() {
     console.log('DRAGOVER');
     fireMouseEvent('dragover', elemDrop, dragStartEvent.dataTransfer);
   }
@@ -80,7 +80,7 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   }
 
   // start dragging process
-  console.log('DRAGSTART');
+  console.log('STARTING DRAG');
   fireMouseEvent('pointerdown', elemDrag);
   dragStart();
   dragOver();
