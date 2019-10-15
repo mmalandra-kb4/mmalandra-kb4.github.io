@@ -12,7 +12,7 @@
 // callback, if present, will be called with true if able to finish, false if not.
 // If you receive "false" on the callback, the list is likely not in the beginning state.
 var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
-  var DELAY_INTERVAL_MS = 10000;
+  var DELAY_INTERVAL_MS = 100;
   var MAX_TRIES = 10;
   var dragStartEvent;
 
