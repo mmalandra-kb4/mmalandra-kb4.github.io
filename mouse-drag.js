@@ -11,14 +11,10 @@
 // Returns false if unable to start.
 // callback, if present, will be called with true if able to finish, false if not.
 // If you receive "false" on the callback, the list is likely not in the beginning state.
-var triggerDragAndDrop = function (selectorDrag, selectorDrop, callback) {
+var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   var DELAY_INTERVAL_MS = 500;
   var MAX_TRIES = 10;
   var dragStartEvent;
-
-  // fetch target elements
-  var elemDrag = document.querySelector(selectorDrag);
-  var elemDrop = document.querySelector(selectorDrop);
 
   if (!elemDrag || !elemDrop) {
     console.log("can't get elements");
