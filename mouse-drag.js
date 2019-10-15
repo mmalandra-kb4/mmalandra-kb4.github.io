@@ -76,7 +76,7 @@ var triggerDragAndDrop = function (elemDrag, elemDrop, callback) {
   
   function dragStart() {
     console.log('DRAGSTART');
-    fireMouseEvent('dragstart', elemDrag);
+    dragStartEvent = fireMouseEvent('dragstart', elemDrag);
   }
 
   // start dragging process
